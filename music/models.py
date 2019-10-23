@@ -8,9 +8,9 @@ class Album(models.Model):
 
 class Song(models.Model):
     name = models.CharField(max_length=100)
-    album = models.ForeignKey(Album, on_delete=models.SET_NULL)
+    album = models.ForeignKey(Album, null=True, on_delete=models.SET_NULL)
 
 
 class Playlist(models.Model):
     name = models.CharField(max_length=100)
-    songs = models.ForeignKey(Song)
+    songs = models.ForeignKey(Song, on_delete=models.CASCADE)
