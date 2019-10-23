@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.conf.urls import url
+from django.conf.urls import url, include
 
 from scanner import views as scanner_views
 from music import views as music_views
@@ -26,5 +26,5 @@ urlpatterns = [
     url(r"^player", music_views.player, name="player"),
     # scanner
     url(r"^manager", scanner_views.scanner, name="manager"),
-
+    url(r"^controller/", include('controller.urls'))
 ]

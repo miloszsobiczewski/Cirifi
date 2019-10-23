@@ -6,4 +6,20 @@
 {% endblock %}
 
 {% block content %}
+    <h4>playlist:
+        {% if que.active %}
+            [x]
+        {% else %}
+            [ ]
+        {% endif %}
+        [{{ que.status  }}]
+        [{{ que.date }}]
+        {{ que.name }}
+    </h4>
+    <form action="{% url 'controller:play' %}" method="post" id="Play">
+    {% csrf_token %}
+        <button class="btn info" type="submit" form="Play" name="play" value="{{ que.id }}">
+            play
+        </button>
+    </form>
 {% endblock %}
