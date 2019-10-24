@@ -9,6 +9,7 @@ def test_task():
 
 @shared_task
 def init():
+    print("CELERY: INFO---- INITIALIZING PYGAME -------")
     return pw.Pygame()
 
 

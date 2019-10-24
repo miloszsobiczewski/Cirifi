@@ -16,9 +16,9 @@ def play(request):
         # activate que
         # todo: django fails here - needs to be handled in Celery
         from controller import pygame_wrapper as pw
-        t.test_task()
-        import pdb; pdb.set_trace()
-        # pygame = t.init.delay()
+        t.test_task.delay()
+        # import pdb; pdb.set_trace()
+        pygame = t.init.delay()
         que.active = True
         que.save(update_fields=["active"])
         song = que.playlist.songs.first().location
