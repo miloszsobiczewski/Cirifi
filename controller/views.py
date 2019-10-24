@@ -21,7 +21,6 @@ def play(request):
         for song in que.playlist.songs.only('location').iterator():
             p.queue(song)
         p.play()
-    # if que.status ==
     # todo: take que, fetch all the songs, init pygame, que the songs and play
     # todo: than change que to active and redirect to previous page
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
