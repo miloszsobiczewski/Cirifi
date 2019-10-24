@@ -41,4 +41,4 @@ class Pygame():
         pygame.mixer.music.get_volume()
 
     def queue(self, file):
-        pygame.mixer.music.queue()
+        pygame.mixer.music.queue(file)

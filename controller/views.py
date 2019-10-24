@@ -9,17 +9,20 @@ from music.models import Playlist
 def play(request):
     que_id = request.POST.get('que_id', False)
     que = Que.objects.get(id=que_id)
-    import pdb; pdb.set_trace()
+    # import pdb; pdb.set_trace()
 
-    if not que.active:
+    if not que.active and que.status == 'Ready':
         # activate que
+        # todo: django fails here - needs to be handled in Celery
         p = pw.Pygame()
         que.active = True
         que.save(update_fields=["active"])
-        # fetch playlist
-
-        # que.playlist
+        # fetch playlist and que songs
+        for song in que.playlist.songs.only('location').iterator():
+            p.queue(song)
+        p.play()
     # if que.status ==
     # todo: take que, fetch all the songs, init pygame, que the songs and play
     # todo: than change que to active and redirect to previous page
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+

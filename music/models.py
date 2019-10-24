@@ -10,8 +10,9 @@ class Playlist(models.Model):
 
 class Album(models.Model):
     name = models.CharField(max_length=100)
+    location = models.CharField(max_length=250)
     playlist = models.ForeignKey(
-        Playlist, related_name='albums', null=True, on_delete=models.SET_NULL
+        Playlist, related_name='albums', null=True, on_delete=models.SET_NULL, blank=True
     )
 
     def __str__(self):
@@ -21,9 +22,11 @@ class Album(models.Model):
 class Song(models.Model):
     name = models.CharField(max_length=100)
     location = models.CharField(max_length=250)
-    album = models.ForeignKey(Album, related_name='songs', on_delete=models.CASCADE)
+    album = models.ForeignKey(
+        Album, related_name='songs', on_delete=models.CASCADE, blank=True
+    )
     playlist = models.ForeignKey(
-        Playlist, related_name='songs', null=True, on_delete=models.SET_NULL
+        Playlist, related_name='songs', null=True, on_delete=models.SET_NULL, blank=True
     )
 
     def __str__(self):
