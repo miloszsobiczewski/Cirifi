@@ -1,12 +1,18 @@
 from celery import shared_task
-from . import pygame_wrapper as pw
+from controller import pygame_wrapper as pw
+
+
+@shared_task
+def test_task():
+    print("CELERY: test-task ---- -esfsdfsdfs -------")
 
 
 @shared_task
 def init():
     return pw.Pygame()
 
+
 @shared_task
-def play(file):
-
-
+def play(file, pygame):
+    import pdb; pdb.set_trace()
+    return pygame.play(file)

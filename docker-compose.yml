@@ -5,6 +5,7 @@ services:
     build: .
     volumes:
       - ./Cirify:/user/src/app
+      - .:/code
     ports:
       - "8000:8000"
     command: >
@@ -12,10 +13,14 @@ services:
 
   redis:
     image: redis:5.0.3-alpine
+    ports:
+      - "6379:6379"
 
   celery:
-    build:
-      context: .
-    command: celery
+    build: .
+    command: celery -A Cirify worker -l info
+    volumes:
+      - .:/code
     depends_on:
       - redis
+

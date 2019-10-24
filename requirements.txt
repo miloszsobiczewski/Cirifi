@@ -2,3 +2,4 @@ Django==2.2.1
 djangorestframework==3.10.3
 pygame==1.9.6
 celery==4.3.0
+redis==3.3.11

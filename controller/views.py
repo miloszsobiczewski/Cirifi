@@ -1,4 +1,4 @@
-from Cirify.tasks import *
+from Cirify import tasks as t
 
 from django.http import HttpResponseRedirect
 
@@ -11,15 +11,18 @@ def play(request):
     que_id = request.POST.get('que_id', False)
     que = Que.objects.get(id=que_id)
     # import pdb; pdb.set_trace()
-
-    if not que.active and que.status == 'Ready':
+    if True:
+    # if not que.active and que.status == 'Ready':
         # activate que
         # todo: django fails here - needs to be handled in Celery
-        init.delay()
+        from controller import pygame_wrapper as pw
+        t.test_task()
+        import pdb; pdb.set_trace()
+        # pygame = t.init.delay()
         que.active = True
         que.save(update_fields=["active"])
         song = que.playlist.songs.first().location
-        play.delay(song)
+        # t.play.delay(song, pygame)
         que.status = 'Playing'
         que.save(update_fields=["status"])
         # fetch playlist and que songs
