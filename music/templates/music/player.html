@@ -18,7 +18,7 @@
     </h4>
     <form action="{% url 'controller:play' %}" method="post" id="Play">
     {% csrf_token %}
-        <button class="btn info" type="submit" form="Play" name="play" value="{{ que.id }}">
+        <button class="btn info" type="submit" form="Play" name="que_id" value="{{ que.id }}">
             play
         </button>
     </form>

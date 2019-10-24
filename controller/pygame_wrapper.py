@@ -13,8 +13,8 @@ class Pygame():
     def load(self, file):
         pygame.mixer.music.load(file)
 
-    def play(self):
-        pygame.mixer.music.play()
+    def play(self, loops=0, start=0.0):
+        pygame.mixer.music.play(loops, start)
 
     def pause(self):
         pygame.mixer.music.pause()
@@ -28,14 +28,17 @@ class Pygame():
     def rewind(self):
         pygame.mixer.music.rewind()
 
-    def fadeout(self):
-        pygame.mixer.music.fadeout()
+    def fadeout(self, time):
+        pygame.mixer.music.fadeout(time)
 
-    def set_volume(self):
-        pygame.mixer.music.set_volume()
+    def set_volume(self, value):
+        """
+        set value between 0.0 and 1.0
+        """
+        pygame.mixer.music.set_volume(value)
 
     def get_volume(self):
         pygame.mixer.music.get_volume()
 
-    def queue(self):
+    def queue(self, file):
         pygame.mixer.music.queue()

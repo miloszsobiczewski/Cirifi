@@ -18,6 +18,7 @@ class Que(models.Model):
     )
     playlist = models.ForeignKey(Playlist, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
+    # pygame = models.
 
     def __str__(self):
         return f"[{self.date.strftime('%Y-%m-%d %H:%M')}] {self.name}"
